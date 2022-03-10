@@ -1,0 +1,84 @@
+server:
+  port: 80
+#####JWT配置#####
+audience:
+  # 代表这个JWT的接收对象,存入audience
+  aud: 98f6bcd462bb1d37
+  # 密钥, 经过Base64加密, 可自行替换。Base64加解密工具：http://tool.chinaz.com/Tools/Base64.aspx
+  base64Secret: eGlvbmd5aWx1WC5YLg==
+  # JWT的签发主体，存入issuer
+  iss: issued by 熊义路
+  # 过期时间毫秒
+  expiresSecond: 172800000
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.xroad.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    mapUnderscoreToCamelCase: true
+redis:
+    host: 127.0.0.1
+    port: 6379
+    connectionTimeout: 5000
+    soTimeout: 5000
+    password:
+    database: 0
+
+
+
+spring:
+#spring.mail.username=2821580012@qq.com
+#spring.mail.password=ywdegjtvddvrddhh
+#spring.mail.host=smtp.qq.com
+#spring.mail.properties.mail.smtp.ssl.enable=true
+    mail:
+      username: 2821580012@qq.com
+      password: kmufrwwybvzfdfbc
+      host: smtp.qq.com
+      properties:
+        mail:
+          smtp:
+            ssl:
+              enable: true
+
+    mvc:
+      pathmatch:
+        matching-strategy: ant-path-matcher
+    jackson:
+      date-format: yyyy-MM-dd HH:mm:ss  #时间戳统一转换为指定格式
+      time-zone: GMT+8  # 时区修改为东8区
+    datasource:
+      username: root
+      password: man69
+      #?serverTimezone=UTC解决时区的报错
+      url: jdbc:mysql://localhost:3306/time?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+      #druid 数据源专有配置
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+       # 打开PSCache
+      poolPreparedStatements: true
+
+      #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+      #如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+      #则导入 log4j 依赖即可，Maven 地址：https://mvnrepository.com/artifact/log4j/log4j
+  #    filters: stat,wall,log4j
+    #指定每个连接上PSCache的大小
+      maxPoolPreparedStatementPerConnectionSize: 20
+        #合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
+        #通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500

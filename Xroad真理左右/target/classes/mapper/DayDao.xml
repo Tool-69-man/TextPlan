@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--<mapper namespace="com.xroad.dao.DayDao">-->
+<mapper namespace="com.xroad.dao.DayDao">
+    <!-- redis配置项 -->
+    <!--<cache type="org.mybatis.caches.redis.RedisCache" />-->
+
+    <resultMap id="DayMap" type="Day">
+    <id property="did" column="did"/>
+    <id property="tid" column="tid"/>
+    <result property="start" column="start" javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP"/>
+    <result property="end" column="end" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime" />
+    <result property="feel" column="feel"/>
+    <result property="text" column="text"/>
+        <association property="thing"  column="tid"  javaType="com.xroad.entity.Thing" select="getThingById"/>
+    </resultMap>
+
+
+    <select  id="getAll"   resultMap="DayMap">
+         select * from daybyday;
+        </select>
+
+    <select  id="getId" parameterType="_int"  resultType="Day">
+            select * from daybyday  where did = #{did};
+        </select>
+
+
+
+    <delete  id="deleteById" parameterType="_int" >
+            delete from daybyday where did = #{did};
+        </delete>
+
+
+    <update id="update" parameterType="Day">
+        update daybyday set  tid=#{tid},start=#{start},end =#{end},feel=#{feel},text=#{text} where  did =#{did};
+    </update>
+
+    <insert id="add" parameterType="map">
+        insert  into daybyday (did, tid,text,feel,start,end) values (#{did},#{tid},#{text},#{feel},#{start},#{end})
+    </insert>
+
+    <select id="getByDate" parameterType="java.time.LocalDate" resultMap="DayMap">
+      select * from daybyday where  start LIKE CONCAT('%','${date}','%' ) order by start ;
+    </select>
+
+    <select  id="getThingById" parameterType="_int"  resultType="Thing">
+            select * from thing  where tid = #{tid};
+        </select>
+
+    <select id="getDayBySE" parameterType="java.time.LocalDateTime" resultMap="DayMap">
+      select * from daybyday where  start = #{start};
+    </select>
+
+
+    <delete id="deleteByStart"  parameterType="java.time.LocalDateTime">
+        delete  from  daybyday where  start = #{start};
+    </delete>
+
+
+</mapper>
+        <!--select * from daybyday where  start LIKE CONCAT('%','${start}','%' ) ;-->

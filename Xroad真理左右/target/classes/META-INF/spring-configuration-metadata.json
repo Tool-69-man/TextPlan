@@ -1,0 +1,44 @@
+{
+  "groups": [
+    {
+      "name": "audience",
+      "type": "com.xroad.model.Audience",
+      "sourceType": "com.xroad.model.Audience"
+    },
+    {
+      "name": "spring.datasource",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.xroad.config.DruidConfig",
+      "sourceMethod": "druidDataSource()"
+    },
+    {
+      "name": "spring.mail",
+      "type": "com.xroad.model.MailInfo",
+      "sourceType": "com.xroad.model.MailInfo"
+    }
+  ],
+  "properties": [
+    {
+      "name": "audience.aud",
+      "type": "java.lang.String",
+      "sourceType": "com.xroad.model.Audience"
+    },
+    {
+      "name": "audience.base64-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.xroad.model.Audience"
+    },
+    {
+      "name": "audience.expires-second",
+      "type": "java.lang.Integer",
+      "sourceType": "com.xroad.model.Audience",
+      "defaultValue": 0
+    },
+    {
+      "name": "audience.iss",
+      "type": "java.lang.String",
+      "sourceType": "com.xroad.model.Audience"
+    }
+  ],
+  "hints": []
+}

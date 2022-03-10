@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xroad.dao.ThingDao">
+    <!-- redis配置项 -->
+    <!--<cache type="org.mybatis.caches.redis.RedisCache" />-->
+
+    <select  id="getAllThing" resultType="Thing">
+            select * from thing
+        </select>
+
+
+    <select  id="getThingById" parameterType="_int"  resultType="Thing">
+            select * from thing  where tid = #{tid};
+        </select>
+
+    <select  id="getThingByName" parameterType="String"  resultType="Thing">
+            select * from thing  where name = #{name};
+        </select>
+
+
+    <delete  id="deleteThing" parameterType="_int" >
+            delete from thing  where tid = #{tid};
+        </delete>
+    <delete  id="deleteThingByName" parameterType="String" >
+            delete from thing  where name = #{name};
+        </delete>
+
+    <update id="updateThing" parameterType="Thing">
+        update thing  set  name=#{name},allFeel=#{allFeel} where  tid =#{tid};
+    </update>
+
+    <insert id="add" parameterType="map">
+        insert  into  thing  (name ,allFeel) values (#{name},#{allFeel})
+    </insert>
+
+
+
+
+</mapper>
+
+
+
+<!--add thing 自动 自动加tid-->

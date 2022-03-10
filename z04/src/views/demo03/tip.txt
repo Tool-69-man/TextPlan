@@ -1,0 +1,45 @@
+demo01
+
+          // this.$router.push({
+          //
+          //   path: "/demo04", // 1 按地址找  query  接收页面路由
+          //   // name:"demo04", //2 按名字找  params
+          //   query: {
+          //     now:this.day
+          //     // now:111
+          //   }
+            // params:{
+            //   now:this.day
+          //   // }
+          // });
+
+          // this.$route.push('/demo04')  //应用js跳转事件进行跳转
+          // this.$router.push( { query2 : { name : 'zs', sex : '男'} } )
+
+          // console.log("xxxxxxxxx"+this.$router.query2.name);
+
+
+
+demo04
+// show() {
+// this.dateThing = reactive(this.$route.query.now.data);
+// const route = useRoute();
+// getDataforday().then(res=>{
+//   this.text =res.data;
+//   this.dateThing=res.data;
+//   console.log("res.data"+res.data.data);
+// }).catch(error=>{
+//   console.log(error)
+// })
+// console.log("now1 "+this.$route.query);
+// console.log("now2 "+this.$route.query.now);
+// console.log("now " + this.$route.params.now);
+// console.log("now " + this.$route.params.now);
+
+// this.dateThing = this.$route.params.now;   //这玩意竟然 少个r  跳转，获取route
+// this.dateThing = JSON.parse(this.$route.query.now.data);   //这玩意竟然 少个r  跳转，获取route
+// this.dateThing = JSON.parse(this.$route.params.now.data);   //这玩意竟然 少个r  跳转，获取route
+// this.dateThing = route.params;   //这玩意竟然 少个r  跳转，获取route
+// console.log("dateThing " + this.dateThing);
+// console.log("dateThing2 " + this.dateThing.data);
+// }
